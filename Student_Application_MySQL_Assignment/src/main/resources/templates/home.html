@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Home</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+    <h2>Student Application</h2>
+    <nav>
+        <a th:href="@{/create}">Create Student</a> |
+        <a th:href="@{/read}">Read Students</a> |
+        <a th:href="@{/update}">Update Students</a> |
+        <a th:href="@{/delete}">Delete Students</a>
+    </nav>
+    <div class="welcome">
+        <h3>Welcome to the Student Application!</h3>
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Students</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+    <h2>Update Student</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Date of Birth</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.rollno}"></td>
+                <td th:text="${student.name}"></td>
+                <td th:text="${student.age}"></td>
+                <td th:text="${student.email}"></td>
+                <td th:text="${student.dob}"></td>
+                <td th:text="${student.address}"></td>
+                <td>
+                    <a th:href="@{|/update/form/${student.rollno}|}">Edit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/}">Back to Home</a>
+</body>
+</html>
