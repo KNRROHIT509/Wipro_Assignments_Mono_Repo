@@ -1,0 +1,61 @@
+<mat-card class="todo-card">
+  <div class="header">
+    <h2>To-Do App 📝</h2>
+  </div>
+
+  <div class="add-row">
+    <mat-form-field class="full" appearance="outline">
+      <mat-label>Add a task</mat-label>
+      <input
+        matInput
+        placeholder="e.g., Learn Angular"
+        [(ngModel)]="newTodoTitle"
+        (keyup.enter)="addTask()"
+      />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="addTask()">
+      <mat-icon>add</mat-icon>
+      Add
+    </button>
+  </div>
+
+  <div class="list">
+    <ng-container *ngFor="let todo of todos; let i = index">
+      <div class="item">
+        <mat-checkbox [(ngModel)]="todo.completed"></mat-checkbox>
+
+        <div *ngIf="!todo.isEditing" class="title" [class.completed]="todo.completed">
+          {{ todo.title }}
+        </div>
+
+        <mat-form-field *ngIf="todo.isEditing" class="edit-input" appearance="fill">
+          <input
+            matInput
+            #editedTitle
+            [value]="todo.title"
+            (keyup.enter)="saveTask(todo, editedTitle.value)"
+            (blur)="saveTask(todo, editedTitle.value)"
+          />
+        </mat-form-field>
+
+        <div class="actions">
+          <button *ngIf="todo.isEditing" mat-icon-button color="primary" (click)="saveTask(todo, editedTitle.value)">
+            <mat-icon>save</mat-icon>
+          </button>
+          <button *ngIf="!todo.isEditing" mat-icon-button (click)="toggleEdit(todo)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          
+          <button mat-icon-button color="warn" aria-label="Delete" (click)="deleteTask(todo.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <mat-divider *ngIf="i < todos.length - 1"></mat-divider>
+    </ng-container>
+
+    <p *ngIf="todos.length === 0" class="empty-message">No tasks yet. Add one above! ✨</p>
+  </div>
+</mat-card>
