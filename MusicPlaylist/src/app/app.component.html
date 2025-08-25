@@ -1,0 +1,29 @@
+<h2>Music Playlist App</h2>
+<div class="filters">
+  <mat-form-field appearance="outline">
+    <mat-label>Filter by Artist</mat-label>
+    <input matInput [(ngModel)]="filterArtist" />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Filter by Album</mat-label>
+    <input matInput [(ngModel)]="filterAlbum" />
+  </mat-form-field>
+</div>
+
+<div class="song-list">
+  <mat-card *ngFor="let song of filteredSongs()" [ngClass]="{'top-rated': song.rating >= 4}">
+    <mat-card-content>
+      <div class="song-header">
+        <span class="song-title">{{ song.name }}</span>
+        <button mat-icon-button>
+          <mat-icon>play_arrow</mat-icon>
+        </button>
+      </div>
+      <img [src]="song.photo" alt="{{ song.name }} photo" class="song-photo" />
+      <div>Artist: <b>{{ song.artist }}</b></div>
+      <div>Album: <b>{{ song.album }}</b></div>
+      <div>Duration: <b>{{ song.duration }}</b></div>
+      <div>Rating: <b>{{ song.rating }}</b></div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,67 @@
+<div>
+  <form [formGroup]="myFormReact" (ngSubmit)="onSubmitReact()">
+    <label for="name">NAME : </label>
+    <input type="text" name="name" placeholder="Enter Your Name" formControlName="name"><br><br>
+    @if(myFormReact.get('name')?.invalid && myFormReact.get('name')?.touched)
+    {
+    <small style="color:red">
+      @if(myFormReact.get('name')?.errors?.['required'])
+      {
+      Name is required!
+      }
+    </small>
+    }
+    <label for="email">EMAIL : </label>
+    <input type="email" name="email" placeholder="Enter Your Email" formControlName="email"><br><br>
+    @if(myFormReact.get('email')?.invalid && myFormReact.get('email')?.touched)
+    {
+    <small style="color:red">
+      @if(myFormReact.get('email')?.errors?.['required'])
+      {
+      Email is required!
+      }
+      @if(myFormReact.get('email')?.errors?.['email'])
+      {
+      Email should be valid!
+      }
+    </small>
+    }
+    <label for="subject">SUBJECT : </label>
+    <input type="text" name="subject" placeholder="Enter Your Subject" minlength="5" maxlength="50"
+      formControlName="subject"><br><br>
+    @if(myFormReact.get('subject')?.invalid && myFormReact.get('subject')?.touched)
+    {
+    <small style="color:red">
+      @if(myFormReact.get('subject')?.errors?.['required'])
+      {
+      Subject is required!
+      }
+      @if(myFormReact.get('subject')?.errors?.['minlength'])
+      {
+      Subject is minimum 5 letters!
+      }
+      @if(myFormReact.get('subject')?.errors?.['maxlength'])
+      {
+      Subject is maximum 40 letters!
+      }
+    </small>
+    }
+    <label for="comments"> Comments & Issues : </label>
+    <textarea id="comments" name="comments" rows="10" cols="35" placeholder="Mention Your Comments & Issues"
+      formControlName="comments"></textarea><br><br>
+    @if(myFormReact.get('comments')?.invalid && myFormReact.get('comments')?.touched)
+    {
+    <small style="color:red">
+      @if(myFormReact.get('comments')?.errors?.['required'])
+      {
+      Comments & Issues is required!
+      }
+      @if(myFormReact.get('comments')?.errors?.['maxlength'])
+      {
+      Comments & Issues is maximum 350 letters!
+      }
+    </small>
+    }
+    <button type="submit" [disabled]="myFormReact.invalid">SUBMIT</button><br><br>
+  </form>
+</div>
