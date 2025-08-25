@@ -1,0 +1,25 @@
+<div style="text-align:center; margin-top: 20px;">
+  <h2>Simple Calculator</h2>
+
+  <div>
+    <label>First Number: </label>
+    <input type="number" [(ngModel)]="num1">
+    <button (click)="increment('num1')">+</button>
+    <button (click)="decrement('num1')">-</button>
+  </div>
+  <br>
+  <div>
+    <label>Second Number: </label>
+    <input type="number" [(ngModel)]="num2">
+    <button (click)="increment('num2')">+</button>
+    <button (click)="decrement('num2')">-</button>
+  </div>
+
+  <br><br>
+  <button (click)="add()">Add</button>
+  <button (click)="subtract()">Subtract</button>
+  <button (click)="multiply()">Multiply</button>
+  <button (click)="divide()">Divide</button>
+
+  <h3>Result: {{ result }}</h3>
+</div>
